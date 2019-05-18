@@ -14,7 +14,7 @@ class ContingencyTable
     }
 
 
-    public void setCopyTable(double[][] copyTable)
+    public final void setCopyTable(double[][] copyTable)
     {
         this.copyTable = copyTable;
     }
