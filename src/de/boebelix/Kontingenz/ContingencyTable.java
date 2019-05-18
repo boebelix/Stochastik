@@ -5,10 +5,47 @@ import java.util.Arrays;
 class ContingencyTable
 {
     private double [][] copyTable;
+    private double [] columnSum;
+    private double [] rowSum;
 
     public ContingencyTable(double [][] inputTable)
     {
         copyTable(inputTable);
+    }
+
+
+    public void setCopyTable(double[][] copyTable)
+    {
+        this.copyTable = copyTable;
+    }
+
+    public double[] getColumnSum()
+    {
+        return columnSum;
+    }
+
+    public double[] getRowSum()
+    {
+        return rowSum;
+    }
+
+    public double chisq()
+    {
+        return 0;
+    }
+
+    // public nach Test in Private ändern
+    public void calcColumnSum()
+    {
+        columnSum = new double[copyTable.length];
+
+        for (int i = 0; i < copyTable.length; i++)
+        {
+            for (int j = 0; j < copyTable[i].length; j++)
+            {
+                columnSum[i] += copyTable[i][j];
+            }
+        }
     }
 
     private void copyTable(double[][] inputTable)
@@ -31,7 +68,6 @@ class ContingencyTable
             // Optimierung Buffer
             System.out.println(Arrays.toString(i));
         }
-
     }
 
 
