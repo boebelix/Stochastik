@@ -8,7 +8,8 @@ public class ContingencyTableTest
     {
         // Tabelle muss in erster Spalte mindestens die maximale Länge haben,
         // sonst kann es bei der Berechnung zu Fehlern führen.
-        // Vorraussetzung: besser alle Spalten gleich lang und alle Zeilen des Arrays müssen gleich lang sein),
+        // Vorraussetzung: Alle Spalten gleich lang UND
+        //                 Alle Zeilen des Arrays müssen gleich lang sein),
 
         double [][] inTable = {{100, 40, 100}, {60, 50, 20}, {104, 46, 40}};
 
