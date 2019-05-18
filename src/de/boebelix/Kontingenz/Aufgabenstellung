@@ -1,0 +1,8 @@
+Aufgabe 1
+Implementieren Sie eine Java-Klasse, die für einen gegebene Matrix mit double-Werten die
+Kontingenztabelle aufstellt und auf dieser Basis die Parameter
+    a) Chi^2,
+    b) C, und
+    c) Ckorr
+berechnet. Implementieren Sie eine weitere Klasse mit einer main-Methode und testen Sie
+Ihre Berechnungen an Hand der Ergebnisse aus den Übungsaufgaben!
