@@ -48,6 +48,19 @@ class ContingencyTable
         }
     }
 
+    public void calcRowSum()
+    {
+        rowSum = new double[copyTable[0].length];
+
+        for (int j = 0; j < copyTable[0].length; j++)
+        {
+            for (int i = 0; i < copyTable.length; i++)
+            {
+                rowSum[j] += copyTable[i][j];
+            }
+        }
+    }
+
     private void copyTable(double[][] inputTable)
     {
         copyTable = new double[inputTable.length][];
@@ -69,8 +82,6 @@ class ContingencyTable
             System.out.println(Arrays.toString(i));
         }
     }
-
-
 
 }
 
