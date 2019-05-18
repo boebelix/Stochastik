@@ -24,6 +24,9 @@ public class ContingencyTableTest
         a.calcRowSum();
         System.out.println(Arrays.toString(a.getRowSum()));
 
+        // Test Summe der Randhäufigkeiten
+        a.calcSum();
+        System.out.println(a.getSum());
     }
 
 

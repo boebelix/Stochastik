@@ -7,6 +7,7 @@ class ContingencyTable
     private double [][] copyTable;
     private double [] columnSum;
     private double [] rowSum;
+    private double sum;
 
     public ContingencyTable(double [][] inputTable)
     {
@@ -29,6 +30,8 @@ class ContingencyTable
         return rowSum;
     }
 
+    public double getSum(){return sum;}
+
     public double chisq()
     {
         return 0;
@@ -48,6 +51,7 @@ class ContingencyTable
         }
     }
 
+    // public nach Test in Private ändern
     public void calcRowSum()
     {
         rowSum = new double[copyTable[0].length];
@@ -61,6 +65,13 @@ class ContingencyTable
         }
     }
 
+    public void calcSum()
+    {
+        for (double i : rowSum)
+        {
+            sum += i;
+        }
+    }
     private void copyTable(double[][] inputTable)
     {
         copyTable = new double[inputTable.length][];
