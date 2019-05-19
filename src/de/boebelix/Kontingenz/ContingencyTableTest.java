@@ -14,7 +14,7 @@ public class ContingencyTableTest
         double [][] inTable = {{100, 40, 100}, {60, 50, 20}, {104, 46, 40}};
 
         ContingencyTable a = new ContingencyTable(inTable);
-        a.printTable();
+        a.printInputTable();
 
         // Test Spaltensumme
         a.calcColumnSum();
@@ -27,6 +27,9 @@ public class ContingencyTableTest
         // Test Summe der Randhäufigkeiten
         a.calcSum();
         System.out.println(a.getSum());
+
+        a.expectedFrequency();
+        a.printExpectedFrequencyTable();
     }
 
 

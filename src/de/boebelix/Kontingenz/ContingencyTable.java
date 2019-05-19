@@ -8,6 +8,7 @@ class ContingencyTable
     private double [] columnSum;
     private double [] rowSum;
     private double sum;
+    private double [][] expectedFrequencyTable;
 
     public ContingencyTable(double [][] inputTable)
     {
@@ -31,10 +32,28 @@ class ContingencyTable
     }
 
     public double getSum(){return sum;}
+    public double [][] getExpectedFrequencyTable()
+    {
+        return expectedFrequencyTable;
+    }
 
     public double chisq()
     {
+
         return 0;
+    }
+
+    // Erwartete Häufigkeit (Häufigkeit bei Unabhänigikeit) Skript Seite 7
+    public void expectedFrequency()
+    {
+            expectedFrequencyTable = new double[copyTable.length][copyTable[0].length];
+        for (int i = 0; i < expectedFrequencyTable.length; i++)
+        {
+            for (int j = 0; j < expectedFrequencyTable[i].length; j++)
+            {
+                expectedFrequencyTable[i][j] = rowSum[j] * columnSum[i] / sum;
+            }
+        }
     }
 
     // public nach Test in Private ändern
@@ -85,9 +104,19 @@ class ContingencyTable
         }
     }
 
-    public void printTable()
+    public void printExpectedFrequencyTable()
     {
-        for (double [] i: copyTable)
+        printTable(expectedFrequencyTable);
+    }
+
+    public void printInputTable()
+    {
+        printTable(copyTable);
+    }
+
+    public void printTable(double [][] inputTable)
+    {
+        for (double [] i: inputTable)
         {
             // Optimierung Buffer
             System.out.println(Arrays.toString(i));
