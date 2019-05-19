@@ -9,6 +9,8 @@ class ContingencyTable
     private double [] rowSum;
     private double sum;
     private double [][] expectedFrequencyTable;
+    private double chisq;
+    private double coefficientOfContingency;
 
     public ContingencyTable(double [][] inputTable)
     {
@@ -38,10 +40,33 @@ class ContingencyTable
         return expectedFrequencyTable;
     }
 
-    // Skript Seite 6
-    public double chisq()
+
+    public double getChisq()
     {
-        double chisq = 0;
+        return chisq;
+    }
+
+    public double getCoefficientOfContingency()
+    {
+        return coefficientOfContingency;
+    }
+
+    // Kontingenzkoeffizient
+    public void calcCoefficientOfContingency()
+    {
+            coefficientOfContingency = Math.sqrt(chisq / (chisq + sum));
+    }
+
+
+    // Gibt die kleinere Seite von Zeile und Spalte zurück
+    public int minSizeOfTable()
+    {
+        return copyTable.length > copyTable[0].length ? copyTable.length : copyTable[0].length;
+    }
+    // Skript Seite 6
+    public void calcChisq()
+    {
+        chisq = 0;
 
         for (int i = 0; i < copyTable.length; i++)
         {
@@ -51,7 +76,6 @@ class ContingencyTable
             }
         }
         chisq -= sum;
-        return chisq;
     }
 
     // Erwartete Häufigkeit (Häufigkeit bei Unabhänigikeit) Skript Seite 7

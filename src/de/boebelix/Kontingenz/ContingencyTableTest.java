@@ -31,7 +31,10 @@ public class ContingencyTableTest
         a.expectedFrequency();
         a.printExpectedFrequencyTable();
 
-        System.out.println(a.chisq());
+        a.calcChisq();
+        System.out.println(a.getChisq());
+        a.calcCoefficientOfContingency();
+        System.out.println(a.getCoefficientOfContingency());
     }
 
 
