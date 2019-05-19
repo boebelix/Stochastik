@@ -60,35 +60,43 @@ class ContingencyTable
         return coefficientOfContingency;
     }
 
+    public double getMaxCoefficientOfContingency()
+    {
+        return maxCoefficientOfContingency;
+    }
+
     public double getNormalizedCoefficientOfContingency()
     {
         return normalizedCoefficientOfContingency;
     }
 
+
+
     // Kontingenzkoeffizient
-    public void calcCoefficientOfContingency()
+    private void calcCoefficientOfContingency()
     {
             coefficientOfContingency = Math.sqrt(chisq / (chisq + sum));
     }
 
-    public void calcMaxCoefficientOfContingency()
+    private void calcMaxCoefficientOfContingency()
     {
         double maxValueOfContingency = minSizeOfTable();
         maxCoefficientOfContingency = Math.sqrt((maxValueOfContingency - 1) / maxValueOfContingency);
     }
 
-    public void calcNormalizedCoefficientOfContingency()
+    private void calcNormalizedCoefficientOfContingency()
     {
         normalizedCoefficientOfContingency = coefficientOfContingency / maxCoefficientOfContingency;
     }
 
     // Gibt die kleinere Seite von Zeile und Spalte zurück
-    public int minSizeOfTable()
+    private int minSizeOfTable()
     {
         return copyTable.length > copyTable[0].length ? copyTable.length : copyTable[0].length;
     }
+
     // Skript Seite 6
-    public void calcChisq()
+    private void calcChisq()
     {
         chisq = 0;
 
@@ -103,7 +111,7 @@ class ContingencyTable
     }
 
     // Erwartete Häufigkeit (Häufigkeit bei Unabhänigikeit) Skript Seite 7
-    public void calcExpectedFrequency()
+    private void calcExpectedFrequency()
     {
             expectedFrequencyTable = new double[copyTable.length][copyTable[0].length];
         for (int i = 0; i < expectedFrequencyTable.length; i++)
@@ -115,8 +123,7 @@ class ContingencyTable
         }
     }
 
-    // public nach Test in Private ändern
-    public void calcColumnSum()
+    private void calcColumnSum()
     {
         columnSum = new double[copyTable.length];
 
@@ -129,8 +136,7 @@ class ContingencyTable
         }
     }
 
-    // public nach Test in Private ändern
-    public void calcRowSum()
+    private void calcRowSum()
     {
         rowSum = new double[copyTable[0].length];
 
@@ -143,13 +149,15 @@ class ContingencyTable
         }
     }
 
-    public void calcSum()
+    private void calcSum()
     {
         for (double i : rowSum)
         {
             sum += i;
         }
     }
+
+
     private void copyTable(double[][] inputTable)
     {
         copyTable = new double[inputTable.length][];
@@ -182,6 +190,7 @@ class ContingencyTable
             // Optimierung Buffer
             System.out.println(Arrays.toString(i));
         }
+        System.out.println();
     }
 
     public void report()

@@ -6,38 +6,63 @@ public class ContingencyTableTest
 {
     public static void main(String[] args)
     {
-        // Tabelle muss in erster Spalte mindestens die maximale Länge haben,
-        // sonst kann es bei der Berechnung zu Fehlern führen.
-        // Vorraussetzung: Alle Spalten gleich lang UND
-        //                 Alle Zeilen des Arrays müssen gleich lang sein),
+        // Vorraussetzung: Alle Zeilen des Arrays müssen gleich lang sein),
 
-        double [][] inTable = {{100, 40, 100}, {60, 50, 20}, {104, 46, 40}};
+        // Spaltenbasierendes Tabelle
+        // 100  60  104
+        // 40   50  46
+        // 100  20  40
+
+        double[][] inTable = {{100, 40, 100}, {60, 50, 20}, {104, 46, 40}};
+
 
         ContingencyTable a = new ContingencyTable(inTable);
         a.report();
 
-     /*   a.printInputTable();
+        // Meine berechneten Werte
 
-        // Test Spaltensumme
-        a.calcColumnSum();
-        System.out.println(Arrays.toString(a.getColumnSum()));
+        double[][] myExpectedFrequencyTable = {{113.14, 58.3, 68.6}, {61.3, 31.6, 37.1}, {89.6, 46.1, 54.3}};
+        double myChisq = 46.33;
+        double myCoefficientOfContingency = 0.2764;
+        double myMaxCoefficientOfContingency = 0.816;
+        double myNormalizedCoefficientOfContingency = 0.338;
 
-        // Test Zeilesumme
-        a.calcRowSum();
-        System.out.println(Arrays.toString(a.getRowSum()));
+        // Test
+        boolean testSuccessfulExpecetdFrequencyTable = isTestSuccessfulExpecetdFrequencyTable(a, myExpectedFrequencyTable);
+        boolean testSuccessfulChisq = compareDouble(a.getChisq(), myChisq, 0.1);
+        boolean testSuccessfulCoefficientOfContingency = compareDouble(a.getCoefficientOfContingency(), myCoefficientOfContingency, 0.1);
+        boolean testSuccessfulMaxCoefficientOfContingency = compareDouble(a.getMaxCoefficientOfContingency(), myMaxCoefficientOfContingency, 0.1);
+        boolean testSuccessfulNormalizedCoefficientOfContingency = compareDouble(a.getNormalizedCoefficientOfContingency(), myNormalizedCoefficientOfContingency, 0.1);
 
-        // Test Summe der Randhäufigkeiten
-        a.calcSum();
-        System.out.println(a.getSum());
 
-        a.calcExpectedFrequency();
-        a.printExpectedFrequencyTable();
+        System.out.println();
+        System.out.println("Test erwartete Häufigkeit: " + testSuccessfulExpecetdFrequencyTable);
+        System.out.println("Test Chi - Quadrat: " + testSuccessfulChisq );
+        System.out.println("Test Kontingenzkoeffizent: " + testSuccessfulCoefficientOfContingency);
+        System.out.println("Test maximaler Kontingenzkoeffizent: " + testSuccessfulMaxCoefficientOfContingency);
+        System.out.println("Test korrigierter Kontingenzkoeffizent : " + testSuccessfulNormalizedCoefficientOfContingency);
 
-        a.calcChisq();
-        System.out.println(a.getChisq());
-        a.calcCoefficientOfContingency();
-        System.out.println(a.getCoefficientOfContingency());*/
     }
 
+    private static boolean isTestSuccessfulExpecetdFrequencyTable(ContingencyTable a, double[][] expectedFrequencyTable)
+    {
+        for (int i = 0; i < expectedFrequencyTable.length; i++)
+        {
+            for (int j = 0; j < expectedFrequencyTable[i].length; j++)
+            {
+                if (compareDouble(a.getExpectedFrequencyTable()[i][j], expectedFrequencyTable[i][j], 0.1) == false)
+                {
+                    return false;
+                }
+
+            }
+        }
+        return true;
+    }
+
+    public static boolean compareDouble(double a, double b, double EPSILON)
+    {
+        return a - b < EPSILON;
+    }
 
 }
