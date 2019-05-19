@@ -11,10 +11,20 @@ class ContingencyTable
     private double [][] expectedFrequencyTable;
     private double chisq;
     private double coefficientOfContingency;
+    private double maxCoefficientOfContingency;
+    private double normalizedCoefficientOfContingency;
 
     public ContingencyTable(double [][] inputTable)
     {
         copyTable(inputTable);
+        calcRowSum();
+        calcColumnSum();
+        calcSum();
+        calcExpectedFrequency();
+        calcChisq();
+        calcCoefficientOfContingency();
+        calcMaxCoefficientOfContingency();
+        calcNormalizedCoefficientOfContingency();
     }
 
 
@@ -40,7 +50,6 @@ class ContingencyTable
         return expectedFrequencyTable;
     }
 
-
     public double getChisq()
     {
         return chisq;
@@ -51,12 +60,27 @@ class ContingencyTable
         return coefficientOfContingency;
     }
 
+    public double getNormalizedCoefficientOfContingency()
+    {
+        return normalizedCoefficientOfContingency;
+    }
+
     // Kontingenzkoeffizient
     public void calcCoefficientOfContingency()
     {
             coefficientOfContingency = Math.sqrt(chisq / (chisq + sum));
     }
 
+    public void calcMaxCoefficientOfContingency()
+    {
+        double maxValueOfContingency = minSizeOfTable();
+        maxCoefficientOfContingency = Math.sqrt((maxValueOfContingency - 1) / maxValueOfContingency);
+    }
+
+    public void calcNormalizedCoefficientOfContingency()
+    {
+        normalizedCoefficientOfContingency = coefficientOfContingency / maxCoefficientOfContingency;
+    }
 
     // Gibt die kleinere Seite von Zeile und Spalte zurück
     public int minSizeOfTable()
@@ -79,7 +103,7 @@ class ContingencyTable
     }
 
     // Erwartete Häufigkeit (Häufigkeit bei Unabhänigikeit) Skript Seite 7
-    public void expectedFrequency()
+    public void calcExpectedFrequency()
     {
             expectedFrequencyTable = new double[copyTable.length][copyTable[0].length];
         for (int i = 0; i < expectedFrequencyTable.length; i++)
@@ -141,11 +165,13 @@ class ContingencyTable
 
     public void printExpectedFrequencyTable()
     {
+        System.out.println("Erwartete Häufigkeit / Häufigkeit bei Unabhängigkeit");
         printTable(expectedFrequencyTable);
     }
 
     public void printInputTable()
     {
+        System.out.println("Eingegebene Tabelle");
         printTable(copyTable);
     }
 
@@ -156,6 +182,17 @@ class ContingencyTable
             // Optimierung Buffer
             System.out.println(Arrays.toString(i));
         }
+    }
+
+    public void report()
+    {
+        printInputTable();
+        printExpectedFrequencyTable();
+
+        System.out.println("Chi- Quadrat: " + chisq);
+        System.out.println("Kontingenzkoeffizient C: " + coefficientOfContingency);
+        System.out.println("Maximalwert von C: " + maxCoefficientOfContingency);
+        System.out.println("Korrigierter Kontingenzkoeffizient: " + normalizedCoefficientOfContingency);
     }
 
 }

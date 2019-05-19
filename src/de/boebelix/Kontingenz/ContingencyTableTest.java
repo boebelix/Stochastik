@@ -14,7 +14,9 @@ public class ContingencyTableTest
         double [][] inTable = {{100, 40, 100}, {60, 50, 20}, {104, 46, 40}};
 
         ContingencyTable a = new ContingencyTable(inTable);
-        a.printInputTable();
+        a.report();
+
+     /*   a.printInputTable();
 
         // Test Spaltensumme
         a.calcColumnSum();
@@ -28,13 +30,13 @@ public class ContingencyTableTest
         a.calcSum();
         System.out.println(a.getSum());
 
-        a.expectedFrequency();
+        a.calcExpectedFrequency();
         a.printExpectedFrequencyTable();
 
         a.calcChisq();
         System.out.println(a.getChisq());
         a.calcCoefficientOfContingency();
-        System.out.println(a.getCoefficientOfContingency());
+        System.out.println(a.getCoefficientOfContingency());*/
     }
 
 
