@@ -185,10 +185,18 @@ class ContingencyTable
 
     public void printTable(double [][] inputTable)
     {
+        StringBuffer buffer = new StringBuffer();
+
         for (double [] i: inputTable)
         {
             // Optimierung Buffer
-            System.out.println(Arrays.toString(i));
+
+            buffer.append(Arrays.toString(i));
+            System.out.println(buffer);
+
+           // System.out.printf("%f ",i);
+
+            //System.out.println(Arrays.toString(i));
         }
         System.out.println();
     }
