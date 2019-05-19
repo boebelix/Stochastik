@@ -32,15 +32,26 @@ class ContingencyTable
     }
 
     public double getSum(){return sum;}
+
     public double [][] getExpectedFrequencyTable()
     {
         return expectedFrequencyTable;
     }
 
+    // Skript Seite 6
     public double chisq()
     {
+        double chisq = 0;
 
-        return 0;
+        for (int i = 0; i < copyTable.length; i++)
+        {
+            for (int j = 0; j < copyTable[i].length; j++)
+            {
+                chisq += copyTable[i][j] * copyTable[i][j] / expectedFrequencyTable[i][j];
+            }
+        }
+        chisq -= sum;
+        return chisq;
     }
 
     // Erwartete Häufigkeit (Häufigkeit bei Unabhänigikeit) Skript Seite 7

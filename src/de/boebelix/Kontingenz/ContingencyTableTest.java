@@ -30,6 +30,8 @@ public class ContingencyTableTest
 
         a.expectedFrequency();
         a.printExpectedFrequencyTable();
+
+        System.out.println(a.chisq());
     }
 
 
